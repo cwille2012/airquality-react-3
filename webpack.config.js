@@ -11,7 +11,15 @@ var browserConfig = {
   },
   module: {
     rules: [
-      { test: /\.(js)$/, use: 'babel-loader' },
+      { 
+        test: /\.(js)$/, 
+        use: {
+          loader: 'babel-loader',
+          options: {
+            compact: true
+          }
+        }
+      }
     ]
   },
   plugins: [

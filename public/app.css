@@ -1,0 +1,39 @@
+.header {
+    opacity: .8;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: #770000;
+    color: white;
+    font-family: helvetica neue;
+    z-index: 1;
+    text-align: center;
+    padding: 10px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+}
+
+.headerLink {
+    color: white;
+    text-decoration: none;
+    padding: 10px;
+}
+
+.headerLink:hover {
+    color: rgb(200, 200, 200);
+    background: #660000;
+}
+
+.footer {
+    position: fixed;
+    bottom: 0;
+    opacity: .8;
+    width: 100%;
+    font-family: helvetica neue;
+    z-index: 1;
+    text-align: center;
+    padding: 10px;
+    background: #111;
+    color: white;
+    font-size: 12px;
+    line-height: 20px;
+}

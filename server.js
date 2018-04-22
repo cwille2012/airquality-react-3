@@ -90,11 +90,27 @@ var _Home = __webpack_require__(9);
 
 var _Home2 = _interopRequireDefault(_Home);
 
-var _Grid = __webpack_require__(10);
+var _MapView = __webpack_require__(10);
+
+var _MapView2 = _interopRequireDefault(_MapView);
+
+var _Sensors = __webpack_require__(11);
+
+var _Sensors2 = _interopRequireDefault(_Sensors);
+
+var _Alarms = __webpack_require__(12);
+
+var _Alarms2 = _interopRequireDefault(_Alarms);
+
+var _Settings = __webpack_require__(13);
+
+var _Settings2 = _interopRequireDefault(_Settings);
+
+var _Grid = __webpack_require__(14);
 
 var _Grid2 = _interopRequireDefault(_Grid);
 
-var _api = __webpack_require__(11);
+var _api = __webpack_require__(15);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -102,6 +118,26 @@ var routes = [{
   path: '/',
   exact: true,
   component: _Home2.default
+}, {
+  path: '/home',
+  exact: true,
+  component: _Home2.default
+}, {
+  path: '/map',
+  exact: true,
+  component: _MapView2.default
+}, {
+  path: '/sensors',
+  exact: true,
+  component: _Sensors2.default
+}, {
+  path: '/alarms',
+  exact: true,
+  component: _Alarms2.default
+}, {
+  path: '/settings',
+  exact: true,
+  component: _Settings2.default
 }, {
   path: '/popular/:id',
   component: _Grid2.default,
@@ -171,7 +207,7 @@ app.get("*", function (req, res, next) {
       _react2.default.createElement(_App2.default, null)
     ));
 
-    res.send("\n      <!DOCTYPE html>\n      <html>\n        <head>\n          <title>SSR with RR</title>\n          <script src=\"/bundle.js\" defer></script>\n          <script>window.__INITIAL_DATA__ = " + (0, _serializeJavascript2.default)(data) + "</script>\n        </head>\n\n        <body>\n          <div id=\"app\">" + markup + "</div>\n        </body>\n      </html>\n    ");
+    res.send("\n      <!DOCTYPE html>\n      <html>\n        <head>\n          <title>SSR with RR</title>\n          <!--<link rel=\"stylesheet\" href=\"../app.css\">-->\n          <script src=\"/bundle.js\" defer></script>\n          <script>window.__INITIAL_DATA__ = " + (0, _serializeJavascript2.default)(data) + "</script>\n        </head>\n\n        <body>\n          <div id=\"app\">" + markup + "</div>\n        </body>\n      </html>\n    ");
   }).catch(next);
 });
 
@@ -235,11 +271,15 @@ var _routes2 = _interopRequireDefault(_routes);
 
 var _reactRouterDom = __webpack_require__(1);
 
-var _Navbar = __webpack_require__(13);
+var _Navbar = __webpack_require__(17);
 
 var _Navbar2 = _interopRequireDefault(_Navbar);
 
-var _NoMatch = __webpack_require__(14);
+var _Header = __webpack_require__(18);
+
+var _Header2 = _interopRequireDefault(_Header);
+
+var _NoMatch = __webpack_require__(19);
 
 var _NoMatch2 = _interopRequireDefault(_NoMatch);
 
@@ -252,6 +292,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+//import styles from './app.css'
 
 var App = function (_Component) {
   _inherits(App, _Component);
@@ -268,6 +310,7 @@ var App = function (_Component) {
       return _react2.default.createElement(
         'div',
         null,
+        _react2.default.createElement(_Header2.default, null),
         _react2.default.createElement(_Navbar2.default, null),
         _react2.default.createElement(
           _reactRouterDom.Switch,
@@ -323,6 +366,110 @@ function Home() {
 
 /***/ }),
 /* 10 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = MapView;
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function MapView() {
+  return _react2.default.createElement(
+    'div',
+    null,
+    'Map'
+  );
+}
+
+/***/ }),
+/* 11 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = Sensors;
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function Sensors() {
+  return _react2.default.createElement(
+    'div',
+    null,
+    'Sensors'
+  );
+}
+
+/***/ }),
+/* 12 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = Alarms;
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function Alarms() {
+  return _react2.default.createElement(
+    'div',
+    null,
+    'Alarms'
+  );
+}
+
+/***/ }),
+/* 13 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = Settings;
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function Settings() {
+  return _react2.default.createElement(
+    'div',
+    null,
+    'Settings'
+  );
+}
+
+/***/ }),
+/* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -469,7 +616,7 @@ var Grid = function (_Component) {
 exports.default = Grid;
 
 /***/ }),
-/* 11 */
+/* 15 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -480,7 +627,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.fetchPopularRepos = fetchPopularRepos;
 
-var _isomorphicFetch = __webpack_require__(12);
+var _isomorphicFetch = __webpack_require__(16);
 
 var _isomorphicFetch2 = _interopRequireDefault(_isomorphicFetch);
 
@@ -502,13 +649,13 @@ function fetchPopularRepos() {
 }
 
 /***/ }),
-/* 12 */
+/* 16 */
 /***/ (function(module, exports) {
 
 module.exports = require("isomorphic-fetch");
 
 /***/ }),
-/* 13 */
+/* 17 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -565,7 +712,72 @@ function Navbar() {
 }
 
 /***/ }),
-/* 14 */
+/* 18 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = Header;
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRouterDom = __webpack_require__(1);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function Header() {
+  var pages = [{
+    name: 'Home',
+    param: 'home'
+  }, {
+    name: 'Map',
+    param: 'map'
+  }, {
+    name: 'Sensors',
+    param: 'sensors'
+  }, {
+    name: 'Alarms',
+    param: 'alarms'
+  }, {
+    name: 'Settings',
+    param: 'settings'
+  }];
+
+  return _react2.default.createElement(
+    'header',
+    null,
+    _react2.default.createElement(
+      'div',
+      { className: 'header' },
+      _react2.default.createElement(
+        'ul',
+        null,
+        pages.map(function (_ref) {
+          var name = _ref.name,
+              param = _ref.param;
+          return _react2.default.createElement(
+            'li',
+            { key: param },
+            _react2.default.createElement(
+              _reactRouterDom.NavLink,
+              { activeStyle: { fontWeight: 'bold' }, to: '/' + param },
+              name
+            )
+          );
+        })
+      )
+    )
+  );
+}
+
+/***/ }),
+/* 19 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
