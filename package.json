@@ -1,31 +1,40 @@
 {
-    "name": "react-web-server",
-    "version": "1.0.0",
-    "description": "React based air quality dashboard with user management",
-    "author": "Christopher Wille",
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/cwille2012/airquality-react-2.git"
-    },
-    "scripts": {
-        "client": "cd client && react-scripts start",
-        "server": "nodemon server.js",
-        "start": "concurrently --kill-others-on-fail \"yarn server\" \"cd client && npm start\""
-    },
-    "dependencies": {
-        "body-parser": "^1.18.2",
-        "connect-mongo": "0.8.2",
-        "cookie-parser": "^1.4.3",
-        "cors": "^2.8.4",
-        "crypto": "^1.0.1",
-        "emailjs": "^2.0.0",
-        "errorhandler": "^1.5.0",
-        "express": "^4.16.2",
-        "express-session": "^1.15.6",
-        "moment": "^2.21.0",
-        "mongodb": "2.2.19"
-    },
-    "devDependencies": {
-        "concurrently": "^3.5.1"
-    }
+  "name": "rr-ssr-gists",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "webpack -w & nodemon server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "MIT",
+  "description": "",
+  "babel": {
+    "presets": [
+      "env",
+      "react"
+    ],
+    "plugins": [
+      "transform-object-rest-spread"
+    ]
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-react": "^6.24.1",
+    "nodemon": "^1.12.5",
+    "webpack": "^3.10.0",
+    "webpack-node-externals": "^1.6.0"
+  },
+  "dependencies": {
+    "cors": "^2.8.4",
+    "express": "^4.16.2",
+    "isomorphic-fetch": "^2.2.1",
+    "react": "^16.3.0",
+    "react-dom": "^16.3.0",
+    "react-router-dom": "^4.2.2",
+    "serialize-javascript": "^1.4.0"
+  }
 }
