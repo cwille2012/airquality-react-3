@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 4);
+/******/ 	return __webpack_require__(__webpack_require__.s = 3);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -86,31 +86,31 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _Home = __webpack_require__(10);
+var _Home = __webpack_require__(9);
 
 var _Home2 = _interopRequireDefault(_Home);
 
-var _MapView = __webpack_require__(11);
+var _MapView = __webpack_require__(10);
 
 var _MapView2 = _interopRequireDefault(_MapView);
 
-var _Sensor = __webpack_require__(22);
+var _Sensor = __webpack_require__(11);
 
 var _Sensor2 = _interopRequireDefault(_Sensor);
 
-var _Alarms = __webpack_require__(13);
+var _Alarms = __webpack_require__(12);
 
 var _Alarms2 = _interopRequireDefault(_Alarms);
 
-var _Settings = __webpack_require__(14);
+var _Settings = __webpack_require__(13);
 
 var _Settings2 = _interopRequireDefault(_Settings);
 
-var _List = __webpack_require__(21);
+var _Sensors = __webpack_require__(14);
 
-var _List2 = _interopRequireDefault(_List);
+var _Sensors2 = _interopRequireDefault(_Sensors);
 
-var _sensorApi = __webpack_require__(17);
+var _sensorApi = __webpack_require__(15);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -128,7 +128,7 @@ var routes = [{
   component: _MapView2.default
 }, {
   path: '/sensors/all',
-  component: _List2.default,
+  component: _Sensors2.default,
   fetchInitialData: function fetchInitialData() {
     var path = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
     return (0, _sensorApi.fetchSensorInfo)('all');
@@ -154,22 +154,16 @@ exports.default = routes;
 
 /***/ }),
 /* 3 */
-/***/ (function(module, exports) {
-
-module.exports = require("isomorphic-fetch");
-
-/***/ }),
-/* 4 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var _express = __webpack_require__(5);
+var _express = __webpack_require__(4);
 
 var _express2 = _interopRequireDefault(_express);
 
-var _cors = __webpack_require__(6);
+var _cors = __webpack_require__(5);
 
 var _cors2 = _interopRequireDefault(_cors);
 
@@ -177,15 +171,15 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _server = __webpack_require__(7);
+var _server = __webpack_require__(6);
 
 var _reactRouterDom = __webpack_require__(1);
 
-var _serializeJavascript = __webpack_require__(8);
+var _serializeJavascript = __webpack_require__(7);
 
 var _serializeJavascript2 = _interopRequireDefault(_serializeJavascript);
 
-var _App = __webpack_require__(9);
+var _App = __webpack_require__(8);
 
 var _App2 = _interopRequireDefault(_App);
 
@@ -201,8 +195,20 @@ app.use((0, _cors2.default)());
 app.use(_express2.default.static("public"));
 
 app.get('/api/sensors/:id', function (req, res) {
-  console.log(req.params.id);
-  var sensors = [{ "id": "B8:27:EB:DA:8F:F5", "type": "Air Quality", "name": "Sensor 1", "location": "Orlando", "group": "Test Group 1", "long": "-81.4076", "lat": "28.2920", "address": "", "floor": "", "room": "", "description": "", "status": "ok" }, { "id": "B8:27:EB:CE:93:69", "type": "Air Quality", "name": "Sensor 2", "location": "Melbourne", "group": "Test Group 2", "long": "-80.620812", "lat": "28.072359", "address": "2415 S Babcock St, Melbourne, FL 32901", "floor": "1", "room": "Suite E", "description": "CCC-USA test sensor", "status": "danger" }, { "id": "B8:27:EB:97:19:1E", "type": "Air Quality", "name": "Sensor 3", "location": "Orlando", "group": "Test Group 1", "long": "-81.4125", "lat": "28.2834", "address": "", "floor": "", "room": "", "description": "", "status": "ok" }];
+  var id = req.params.id;
+
+  console.log(id);
+
+  var sensors = [];
+  if (id == 'all') {
+    sensors = [{ "id": "B8:27:EB:DA:8F:F5", "type": "Air Quality", "name": "Sensor 1", "location": "Orlando", "group": "Test Group 1", "long": "-81.4076", "lat": "28.2920", "address": "", "floor": "", "room": "", "description": "", "status": "ok" }, { "id": "B8:27:EB:CE:93:69", "type": "Air Quality", "name": "Sensor 2", "location": "Melbourne", "group": "Test Group 2", "long": "-80.620812", "lat": "28.072359", "address": "2415 S Babcock St, Melbourne, FL 32901", "floor": "1", "room": "Suite E", "description": "CCC-USA test sensor", "status": "danger" }, { "id": "B8:27:EB:97:19:1E", "type": "Air Quality", "name": "Sensor 3", "location": "Orlando", "group": "Test Group 1", "long": "-81.4125", "lat": "28.2834", "address": "", "floor": "", "room": "", "description": "", "status": "ok" }];
+  } else if (id == 'B8:27:EB:DA:8F:F5') {
+    sensors = [{ "id": "B8:27:EB:DA:8F:F5", "type": "Air Quality", "name": "Sensor 1", "location": "Orlando", "group": "Test Group 1", "long": "-81.4076", "lat": "28.2920", "address": "", "floor": "", "room": "", "description": "", "status": "ok" }];
+  } else if (id == 'B8:27:EB:CE:93:69') {
+    sensors = [{ "id": "B8:27:EB:CE:93:69", "type": "Air Quality", "name": "Sensor 2", "location": "Melbourne", "group": "Test Group 2", "long": "-80.620812", "lat": "28.072359", "address": "2415 S Babcock St, Melbourne, FL 32901", "floor": "1", "room": "Suite E", "description": "CCC-USA test sensor", "status": "danger" }];
+  } else if (id == 'B8:27:EB:97:19:1E') {
+    sensors = [{ "id": "B8:27:EB:97:19:1E", "type": "Air Quality", "name": "Sensor 3", "location": "Orlando", "group": "Test Group 1", "long": "-81.4125", "lat": "28.2834", "address": "", "floor": "", "room": "", "description": "", "status": "ok" }];
+  }
   res.end(JSON.stringify(sensors));
 });
 
@@ -222,7 +228,7 @@ app.get("*", function (req, res, next) {
       _react2.default.createElement(_App2.default, null)
     ));
 
-    res.send("\n      <!DOCTYPE html>\n      <html>\n        <head>\n          <title>SSR with RR</title>\n          <!--<link rel=\"stylesheet\" href=\"../app.css\">-->\n          <script src=\"/bundle.js\" defer></script>\n          <script>window.__INITIAL_DATA__ = " + (0, _serializeJavascript2.default)(data) + "</script>\n        </head>\n\n        <body>\n          <div id=\"app\">" + markup + "</div>\n        </body>\n      </html>\n    ");
+    res.send("\n      <!DOCTYPE html>\n      <html>\n        <head>\n          <title>Data Dashboard (SSR)</title>\n          <!--<link rel=\"stylesheet\" href=\"../app.css\">-->\n          <script src=\"/bundle.js\" defer></script>\n          <script>window.__INITIAL_DATA__ = " + (0, _serializeJavascript2.default)(data) + "</script>\n        </head>\n\n        <body>\n          <div id=\"app\">" + markup + "</div>\n        </body>\n      </html>\n    ");
   }).catch(next);
 });
 
@@ -230,39 +236,32 @@ app.listen(3000, function () {
   console.log("Server is listening on port: 3000");
 });
 
-/*
-  1) Just get shared App rendering to string on server then taking over on client.
-  2) Pass data to <App /> on server. Show diff. Add data to window then pick it up on the client too.
-  3) Instead of static data move to dynamic data (github gists)
-  4) add in routing.
-*/
-
 /***/ }),
-/* 5 */
+/* 4 */
 /***/ (function(module, exports) {
 
 module.exports = require("express");
 
 /***/ }),
-/* 6 */
+/* 5 */
 /***/ (function(module, exports) {
 
 module.exports = require("cors");
 
 /***/ }),
-/* 7 */
+/* 6 */
 /***/ (function(module, exports) {
 
 module.exports = require("react-dom/server");
 
 /***/ }),
-/* 8 */
+/* 7 */
 /***/ (function(module, exports) {
 
 module.exports = require("serialize-javascript");
 
 /***/ }),
-/* 9 */
+/* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -286,11 +285,11 @@ var _routes2 = _interopRequireDefault(_routes);
 
 var _reactRouterDom = __webpack_require__(1);
 
-var _Header = __webpack_require__(19);
+var _Header = __webpack_require__(17);
 
 var _Header2 = _interopRequireDefault(_Header);
 
-var _NoMatch = __webpack_require__(20);
+var _NoMatch = __webpack_require__(18);
 
 var _NoMatch2 = _interopRequireDefault(_NoMatch);
 
@@ -349,7 +348,7 @@ var App = function (_Component) {
 exports.default = App;
 
 /***/ }),
-/* 10 */
+/* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -370,12 +369,12 @@ function Home() {
   return _react2.default.createElement(
     'div',
     null,
-    'Select a Language'
+    'Home'
   );
 }
 
 /***/ }),
-/* 11 */
+/* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -401,8 +400,33 @@ function MapView() {
 }
 
 /***/ }),
-/* 12 */,
-/* 13 */
+/* 11 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = Sensors;
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function Sensors() {
+  return _react2.default.createElement(
+    'div',
+    null,
+    'Sensor'
+  );
+}
+
+/***/ }),
+/* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -428,7 +452,7 @@ function Alarms() {
 }
 
 /***/ }),
-/* 14 */
+/* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -454,141 +478,7 @@ function Settings() {
 }
 
 /***/ }),
-/* 15 */,
-/* 16 */,
-/* 17 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.fetchSensorInfo = fetchSensorInfo;
-
-var _isomorphicFetch = __webpack_require__(3);
-
-var _isomorphicFetch2 = _interopRequireDefault(_isomorphicFetch);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function fetchSensorInfo() {
-  var id = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'all';
-
-  //const encodedURI = encodeURI(`https://localhost:3000/api/sensors?q=id:${id}&sort=name&order=desc`)
-  console.log(id);
-  var encodedURI = void 0;
-  if (id == 'all') {
-    encodedURI = encodeURI('http://localhost:3000/api/sensors/all');
-  } else {
-    encodedURI = encodeURI('http://localhost:3000/api/sensors/' + id);
-  }
-
-  return (0, _isomorphicFetch2.default)(encodedURI).then(function (data) {
-    return data.json();
-  }).then(function (sensors) {
-    return sensors;
-  }).catch(function (error) {
-    console.warn(error);
-    return null;
-  });
-}
-
-/***/ }),
-/* 18 */,
-/* 19 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = Header;
-
-var _react = __webpack_require__(0);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _reactRouterDom = __webpack_require__(1);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function Header() {
-  var pages = [{
-    name: 'Home',
-    param: 'home'
-  }, {
-    name: 'Map',
-    param: 'map'
-  }, {
-    name: 'Sensors',
-    param: 'sensors/all'
-  }, {
-    name: 'Alarms',
-    param: 'alarms'
-  }, {
-    name: 'Settings',
-    param: 'settings'
-  }];
-
-  return _react2.default.createElement(
-    'header',
-    null,
-    _react2.default.createElement(
-      'div',
-      { className: 'header' },
-      _react2.default.createElement(
-        'ul',
-        null,
-        pages.map(function (_ref) {
-          var name = _ref.name,
-              param = _ref.param;
-          return _react2.default.createElement(
-            'li',
-            { key: param },
-            _react2.default.createElement(
-              _reactRouterDom.NavLink,
-              { activeStyle: { fontWeight: 'bold' }, to: '/' + param },
-              name
-            )
-          );
-        })
-      )
-    )
-  );
-}
-
-/***/ }),
-/* 20 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = NoMatch;
-
-var _react = __webpack_require__(0);
-
-var _react2 = _interopRequireDefault(_react);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function NoMatch() {
-  return _react2.default.createElement(
-    'div',
-    null,
-    'Four Oh Four'
-  );
-}
-
-/***/ }),
-/* 21 */
+/* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -740,7 +630,7 @@ var List = function (_Component) {
 exports.default = List;
 
 /***/ }),
-/* 22 */
+/* 15 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -749,7 +639,118 @@ exports.default = List;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = Sensors;
+exports.fetchSensorInfo = fetchSensorInfo;
+
+var _isomorphicFetch = __webpack_require__(16);
+
+var _isomorphicFetch2 = _interopRequireDefault(_isomorphicFetch);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function fetchSensorInfo() {
+  var id = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'all';
+
+  //const encodedURI = encodeURI(`https://localhost:3000/api/sensors?q=id:${id}&sort=name&order=desc`)
+  console.log(id);
+  var encodedURI = void 0;
+  if (id == 'all') {
+    encodedURI = encodeURI('http://localhost:3000/api/sensors/all');
+  } else {
+    encodedURI = encodeURI('http://localhost:3000/api/sensors/' + id);
+  }
+
+  return (0, _isomorphicFetch2.default)(encodedURI).then(function (data) {
+    return data.json();
+  }).then(function (sensors) {
+    return sensors;
+  }).catch(function (error) {
+    console.warn(error);
+    return null;
+  });
+}
+
+/***/ }),
+/* 16 */
+/***/ (function(module, exports) {
+
+module.exports = require("isomorphic-fetch");
+
+/***/ }),
+/* 17 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = Header;
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRouterDom = __webpack_require__(1);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function Header() {
+  var pages = [{
+    name: 'Home',
+    param: 'home'
+  }, {
+    name: 'Map',
+    param: 'map'
+  }, {
+    name: 'Sensors',
+    param: 'sensors/all'
+  }, {
+    name: 'Alarms',
+    param: 'alarms'
+  }, {
+    name: 'Settings',
+    param: 'settings'
+  }];
+
+  return _react2.default.createElement(
+    'header',
+    null,
+    _react2.default.createElement(
+      'div',
+      { className: 'header' },
+      _react2.default.createElement(
+        'ul',
+        null,
+        pages.map(function (_ref) {
+          var name = _ref.name,
+              param = _ref.param;
+          return _react2.default.createElement(
+            'li',
+            { key: param },
+            _react2.default.createElement(
+              _reactRouterDom.NavLink,
+              { activeStyle: { fontWeight: 'bold' }, to: '/' + param },
+              name
+            )
+          );
+        })
+      )
+    )
+  );
+}
+
+/***/ }),
+/* 18 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = NoMatch;
 
 var _react = __webpack_require__(0);
 
@@ -757,11 +758,11 @@ var _react2 = _interopRequireDefault(_react);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function Sensors() {
+function NoMatch() {
   return _react2.default.createElement(
     'div',
     null,
-    'Sensor'
+    'Four Oh Four'
   );
 }
 

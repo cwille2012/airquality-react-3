@@ -3,7 +3,7 @@ import MapView from './MapView'
 import Sensor from './Sensor'
 import Alarms from './Alarms'
 import Settings from './Settings'
-import List from './List'
+import Sensors from './Sensors'
 
 import { fetchSensorInfo } from './sensor-api'
 
@@ -25,7 +25,7 @@ const routes =  [
   },
   {
     path: '/sensors/all',
-    component: List,
+    component: Sensors,
     fetchInitialData: (path = '') => fetchSensorInfo('all')
   },
   {
