@@ -10,7 +10,7 @@ export default function Header () {
         param: 'map',
       }, {
         name: 'Sensors',
-        param: 'sensors',
+        param: 'sensors/all',
       }, {
         name: 'Alarms',
         param: 'alarms',

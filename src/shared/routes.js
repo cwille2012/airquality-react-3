@@ -1,11 +1,11 @@
 import Home from './Home'
 import MapView from './MapView'
-import Sensors from './Sensors'
+import Sensor from './Sensor'
 import Alarms from './Alarms'
 import Settings from './Settings'
-import Grid from './Grid'
+import List from './List'
 
-import { fetchPopularRepos } from './api'
+import { fetchSensorInfo } from './sensor-api'
 
 const routes =  [
   {
@@ -24,9 +24,14 @@ const routes =  [
     component: MapView,
   },
   {
-    path: '/sensors',
-    exact: true,
-    component: Sensors,
+    path: '/sensors/all',
+    component: List,
+    fetchInitialData: (path = '') => fetchSensorInfo('all')
+  },
+  {
+    path: '/sensors/:id',
+    component: Sensor,
+    fetchInitialData: (path = '') => fetchSensorInfo(path.split('/').pop())
   },
   {
     path: '/alarms',
@@ -37,11 +42,6 @@ const routes =  [
     path: '/settings',
     exact: true,
     component: Settings,
-  },
-  {
-    path: '/popular/:id',
-    component: Grid,
-    fetchInitialData: (path = '') => fetchPopularRepos(path.split('/').pop())
   }
 ]
 

@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import routes from './routes'
 import { Route, Link, Redirect, Switch } from 'react-router-dom'
-import Navbar from './Navbar'
 import Header from './Header'
 import NoMatch from './NoMatch'
 //import styles from './app.css'
@@ -11,7 +10,6 @@ class App extends Component {
     return (
       <div>
         <Header />
-        <Navbar />
 
         <Switch>
           {routes.map(({ path, exact, component: Component, ...rest }) => (

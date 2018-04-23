@@ -1,47 +1,47 @@
 import React, { Component } from 'react'
 
-class Grid extends Component {
+class List extends Component {
   constructor(props) {
     super(props)
 
-    let repos
+    let sensors
     if (__isBrowser__) {
-      repos = window.__INITIAL_DATA__
+      sensors = window.__INITIAL_DATA__
       delete window.__INITIAL_DATA__
     } else {
-      repos = this.props.staticContext.data
+      sensors = this.props.staticContext.data
     }
 
     this.state = {
-      repos,
-      loading: repos ? false : true,
+      sensors,
+      loading: sensors ? false : true,
     }
 
-    this.fetchRepos = this.fetchRepos.bind(this)
+    this.fetchSensors = this.fetchSensors.bind(this)
   }
   componentDidMount () {
-    if (!this.state.repos) {
-      this.fetchRepos(this.props.match.params.id)
+    if (!this.state.sensors) {
+      this.fetchSensors(this.props.match.params.id)
     }
   }
   componentDidUpdate (prevProps, prevState) {
     if (prevProps.match.params.id !== this.props.match.params.id) {
-      this.fetchRepos(this.props.match.params.id)
+      this.fetchSensors(this.props.match.params.id)
     }
   }
-  fetchRepos (lang) {
+  fetchSensors (lang) {
     this.setState(() => ({
       loading: true
     }))
 
     this.props.fetchInitialData(lang)
-      .then((repos) => this.setState(() => ({
-        repos,
+      .then((sensors) => this.setState(() => ({
+        sensors,
         loading: false,
       })))
   }
   render() {
-    const { loading, repos } = this.state
+    const { loading, sensors } = this.state
 
     if (loading === true) {
       return <p>LOADING</p>
@@ -49,12 +49,13 @@ class Grid extends Component {
 
     return (
       <ul style={{display: 'flex', flexWrap: 'wrap'}}>
-        {repos.map(({ name, owner, stargazers_count, html_url }) => (
+        {sensors.map(({ id, type, name, location, group, status }) => (
           <li key={name} style={{margin: 30}}>
             <ul>
-              <li><a href={html_url}>{name}</a></li>
-              <li>@{owner.login}</li>
-              <li>{stargazers_count} stars</li>
+              <li><a href={'/sensors/'+id}>{name}</a></li>
+              <li>{id}</li>
+              <li>{location}</li>
+              <li>{group}</li>
             </ul>
           </li>
         ))}
@@ -63,4 +64,4 @@ class Grid extends Component {
   }
 }
 
-export default Grid
+export default List
